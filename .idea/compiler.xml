@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Desafio" />
         <module name="JsfWebApp" />
+        <module name="JsfWebApp_EsigProject" />
       </profile>
     </annotationProcessing>
   </component>
