@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en" lang="en">
+
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <h:outputStylesheet library="webjars" name="primeflex/2.0.0/primeflex.min.css"/>
+</h:head>
+
+<h:body>
+    <p:outputPanel styleClass="card p-mb-3">
+        <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem styleClass="p-mr-2" value="Projects"
+                        url="http://localhost:8085/EsigProjectFinal_war/project.xhtml"
+                        icon="pi pi-fw pi-file"/>
+            <p:menuitem styleClass="p-mr-2" value="Tasks"
+                        url="http://localhost:8085/EsigProjectFinal_war/task.xhtml"
+                        icon="pi pi-fw pi-check-square"/>
+            <p:menuitem styleClass="p-mr-2" value="Employees"
+                        url="http://localhost:8085/EsigProjectFinal_war/employee.xhtml"
+                        icon="pi pi-fw pi-users"/>
+            <p:menuitem styleClass="p-mr-2" value="Occupations"
+                        url="http://localhost:8085/EsigProjectFinal_war/occupation.xhtml"
+                        icon="pi pi-fw pi-id-card"/>
+        </p:tabMenu>
+    </p:outputPanel>
+</h:body>
+
+</html>
