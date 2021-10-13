@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,6 +19,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Occupation {
 
+	@Min(0)
+	@NotNull
 	@Id
 	@Column(name = "id", nullable = false)
 	private Long id;

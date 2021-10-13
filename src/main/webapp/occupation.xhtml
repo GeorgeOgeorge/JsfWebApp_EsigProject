@@ -102,13 +102,16 @@
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-col">
                             <p:outputLabel for="occupation_id">id</p:outputLabel>
-                            <p:inputText id="occupation_id" value="#{occupationBean.occupation.id}"
-                                         required="true"/>
+                            <p:inputText  id="occupation_id" placeholder="occupation id" value="#{occupationBean.occupation.id}" required="true" >
+
+                                <f:validateRequired/>
+                            </p:inputText>
                         </div>
                         <div class="p-field p-col">
                             <p:outputLabel for="occupation_name">Name</p:outputLabel>
-                            <p:inputText id="occupation_name" value="#{occupationBean.occupation.name}"
-                                         required="true"/>
+                            <p:inputText id="occupation_name" placeholder="occupation name" value="#{occupationBean.occupation.name}" required="true">
+                                <f:validateLength minimum="3" maximum="30"/>
+                            </p:inputText>
                         </div>
                     </div>
                 </p:outputPanel>
