@@ -37,7 +37,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public void saveEmployee() {
-        if(this.employeeDao.isPresent(this.employee)) {
+        if (this.employeeDao.isPresent(this.employee)) {
             this.employeeDao.update(this.employee);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Updated"));
         } else {
@@ -49,8 +49,8 @@ public class EmployeeBean implements Serializable {
     }
 
     public void softRemove() {
-        if(this.getHasEmployeeSelected())
-            this.selectedEmployeeList.forEach( e -> this.setInactive(e) );
+        if (this.getHasEmployeeSelected())
+            this.selectedEmployeeList.forEach(e -> this.setInactive(e));
         else
             this.setInactive(this.employee);
         this.refreshData();
@@ -59,7 +59,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public String getDeleteButtonMessage() {
-        if(this.getHasEmployeeSelected())
+        if (this.getHasEmployeeSelected())
             return this.selectedEmployeeList.size() + "employees selected";
         else
             return "delete";
@@ -73,10 +73,10 @@ public class EmployeeBean implements Serializable {
         this.employee = new Employee();
         this.selectedEmployeeList = Arrays.asList();
         this.activeEmployeeList = this.employeeDao.list().stream()
-                .filter( e -> e.getActiveStatus() )
+                .filter(e -> e.getActiveStatus())
                 .collect(Collectors.toList());
         this.activeOccupationList = this.occupationDao.list().stream()
-                .filter( o -> o.getActiveStatus() ).
+                .filter(o -> o.getActiveStatus()).
                 collect(Collectors.toList());
     }
 

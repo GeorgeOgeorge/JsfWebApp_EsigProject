@@ -37,6 +37,7 @@ public class OccupationBean implements Serializable {
             this.occupationDao.update(this.occupation);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation updated"));
         } else {
+            this.occupation.setId((long) this.occupation.getId().hashCode());
             this.occupationDao.insert(this.occupation);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation Added"));
         }

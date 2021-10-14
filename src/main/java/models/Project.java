@@ -3,6 +3,8 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
@@ -40,6 +42,7 @@ public class Project {
     private Boolean activeStatus = true;
 
     @NotNull
+    @Fetch(FetchMode.JOIN)
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "project_tasks",
             joinColumns = @JoinColumn(name = "project_id"),
