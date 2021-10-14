@@ -33,7 +33,7 @@ public class OccupationBean implements Serializable {
     }
 
     public void saveOccupation() {
-        if (this.occupationDao.isPresent(this.occupation)) {
+        if(this.occupationDao.isPresent(this.occupation)) {
             this.occupationDao.update(this.occupation);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation updated"));
         } else {
@@ -45,11 +45,10 @@ public class OccupationBean implements Serializable {
     }
 
     public void softRemove() {
-        if (this.getHasOccupationsSelected()) {
+        if (this.getHasOccupationsSelected())
             this.selectedOccupationList.forEach(o -> this.setInactive(o));
-        } else {
+        else
             this.setInactive(this.occupation);
-        }
         this.refreshData();
         this.getDeleteButtonMessage();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation(s) now inactive"));

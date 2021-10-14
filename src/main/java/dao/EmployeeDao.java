@@ -85,7 +85,6 @@ public class EmployeeDao {
 	}
 
 	public Boolean isPresent(Employee employee) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.contains(employee);
+		return this.find(employee.getId()) != null;
 	}
 }

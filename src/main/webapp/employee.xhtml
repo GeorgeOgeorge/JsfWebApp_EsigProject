@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en" lang="en">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css"/>
+    <title>TaskManager Employees</title>
+</h:head>
+
+<h:body>
+    <ui:include src="components/navbar.xhtml"/>
+
+    <h:form id="form">
+        <p:outputPanel styleClass="card crud-demo">
+
+            <p:growl id="messages" showDetail="true"/>
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="New Employee" icon="pi pi-plus"
+                                     update=":form:employee-content"
+                                     oncomplete="PF('EmployeeDialog').show()"
+                                     styleClass="ui-button-success"
+                                     style="margin-right: .5rem">
+                        <p:resetInput target=":form:employee-content"/>
+                    </p:commandButton>
+                    <p:commandButton id="delete-employee-button" icon="pi pi-trash"
+                                     value="#{employeeBean.deleteButtonMessage}"
+                                     oncomplete="PF('deleteEmployeeDialog').show()"
+                                     styleClass="ui-button-danger"
+                                     disabled="#{!employeeBean.hasEmployeeSelected}"
+                                     update="@this">
+                    </p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:dataTable id="dt-employee" widgetVar="dtEmployee"
+                         var="employee" value="#{employeeBean.activeEmployeeList}"
+                         reflow="true" styleClass="products-table"
+                         selection="#{employeeBean.selectedEmployeeList}"
+                         rowKey="#{employee.id}" paginator="true"
+                         rows="10" rowSelectMode="add"
+                         paginatorPosition="bottom"
+            >
+                <f:facet name="header">
+                    <div class="products-table-header">
+                        <span style="font-weight: bold">Emplooyes</span>
+                        <span class="filter-container ui-input-icon-left">
+                            <i class="pi pi-search"/>
+                            <p:inputText id="globalFilter" onkeyup="PF('dtEmployee').filter()" placeholder="Search"/>
+                        </span>
+                    </div>
+                </f:facet>
+
+                <p:ajax event="rowSelect" update=":form:delete-employee-button"/>
+                <p:ajax event="rowUnselect" update=":form:delete-employee-button"/>
+                <p:ajax event="rowSelectCheckbox" update=":form:delete-employee-button"/>
+                <p:ajax event="rowUnselectCheckbox" update=":form:delete-employee-button"/>
+                <p:ajax event="toggleSelect" update=":form:delete-employee-button"/>
+
+                <p:column selectionMode="multiple" exportable="false"/>
+
+                <p:column headerText="Id Code" sortBy="#{employee.id}" filterBy="#{employee.id}">
+                    <h:outputText value="#{employee.id}"/>
+                </p:column>
+
+                <p:column headerText="Name" sortBy="#{employee.name}" filterBy="#{employee.name}">
+                    <h:outputText value="#{employee.name}"/>
+                </p:column>
+
+                <p:column headerText="Age" sortBy="#{employee.age}" filterBy="#{employee.age}">
+                    <h:outputText value="#{employee.age}"/>
+                </p:column>
+
+                <p:column headerText="Gender" sortBy="#{employee.gender}" filterBy="#{employee.gender}">
+                    <h:outputText value="#{employee.gender}"/>
+                </p:column>
+
+                <p:column headerText="Occupations" sortBy="#{employee.occupations}" filterBy="#{employee.occupations}">
+                    <h:outputText  value="#{employee.occupations}"/>
+                </p:column>
+
+                <p:column exportable="false">
+                    <p:commandButton icon="pi pi-pencil" update=":form:employee-content"
+                                     oncomplete="PF('EmployeeDialog').show()"
+                                     styleClass="edit-button rounded-button ui-button-success"
+                                     process="@this">
+                        <f:setPropertyActionListener value="#{employee}" target="#{employeeBean.employee}"/>
+                        <p:resetInput target=":form:employee-content"/>
+                    </p:commandButton>
+                    <p:commandButton class="ui-button-warning rounded-button"
+                                     icon="pi pi-trash" process="@this"
+                                     oncomplete="PF('deleteEmployeeDialog').show()">
+                        <f:setPropertyActionListener value="#{employee}" target="#{employeeBean.employee}"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dialog header="Employee details"
+                      showEffect="fade" modal="true"
+                      widgetVar="EmployeeDialog"
+                      responsive="true">
+
+                <p:outputPanel id="employee-content" class="ui-fluid">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <p:outputLabel for="employee_id">Id</p:outputLabel>
+                            <p:inputText id="employee_id" placeholder="employee id" value="#{employeeBean.employee.id}"
+                                         required="true">
+                                <f:validateRequired/>
+                            </p:inputText>
+                        </div>
+
+                        <div class="p-field p-col">
+                            <p:outputLabel for="employee_name">Name</p:outputLabel>
+                            <p:inputText id="employee_name" placeholder="employee name"
+                                         value="#{employeeBean.employee.name}" required="true">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="3" maximum="50"/>
+                            </p:inputText>
+                        </div>
+
+                        <div class="p-field p-col">
+                            <p:outputLabel for="employee_gender">Gender</p:outputLabel>
+                            <p:selectOneRadio id="employee_gender" value="#{employeeBean.employee.gender}"
+                                              layout="responsive" columns="3">
+                                <f:selectItem itemLabel="Female" itemValue="Female"/>
+                                <f:selectItem itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem itemLabel="Other" itemValue="Other"/>
+                            </p:selectOneRadio>
+                        </div>
+
+                        <div class="p-field p-col">
+                            <p:outputLabel for="employee_occupation" value="Employee occupation"/>
+                            <p:selectManyMenu id="employee_occupation" value="#{employeeBean.employee.occupations}"
+                                              converter="#{omnifaces.SelectItemsConverter}" showCheckbox="true"
+                                              var="occupation_column" filter="true" filterMatchMode="contains"
+                                              styleClass="manymenu-advanced" >
+
+                                <f:selectItems value="#{employeeBean.activeOccupationList}" var="occupation"
+                                               itemLabel="#{occupation.name}"
+                                               itemValue="#{occupation}"/>
+
+                                <p:column>
+                                    <h:outputText value="#{occupation_column.id}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <h:outputText value="#{occupation_column.name}"/>
+                                </p:column>
+
+                            </p:selectManyMenu>
+                        </div>
+
+                        <div class="p-field p-col">
+                            <p:outputLabel for="employee_age">Age</p:outputLabel>
+                            <p:spinner id="employee_age" min="18" max="100" value="#{employeeBean.employee.age}">
+                                <f:validateRequired/>
+                            </p:spinner>
+                        </div>
+                    </div>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Save" icon="pi pi-check"
+                                     actionListener="#{employeeBean.saveEmployee}"
+                                     update="form"
+                                     process="employee-content @this"/>
+                    <p:commandButton value="Cancel" icon="pi pi-times"
+                                     onclick="PF('EmployeeDialog').hide()"
+                                     class="ui-button-secondary"/>
+                </f:facet>
+
+            </p:dialog>
+
+            <p:confirmDialog widgetVar="deleteEmployeeDialog" showEffect="fade"
+                             width="300" message="Set Employee as inactive?"
+                             header="Confirm" severity="warn">
+                <p:commandButton value="Yes" icon="pi pi-check"
+                                 actionListener="#{employeeBean.softRemove}"
+                                 process="@this" update=":form:dt-employee :form:delete-employee-button"
+                                 oncomplete="PF('deleteEmployeeDialog').hide()"/>
+                <p:commandButton value="No" type="button" update=":form:dt-employee"
+                                 styleClass="ui-button-secondary p-ml-2" icon="pi pi-times"
+                                 onclick="PF('deleteEmployeeDialog').hide()"/>
+            </p:confirmDialog>
+
+        </p:outputPanel>
+    </h:form>
+</h:body>
+
+</html>
