@@ -126,7 +126,7 @@
                     <div class="p-formgrid p-grid">
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_id">Id</p:outputLabel>
+                            <p:outputLabel for="employee_id" value="id" />
                             <p:inputText id="employee_id" placeholder="employee id" value="#{employeeBean.employee.id}"
                                          required="true">
                                 <f:validateRequired/>
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_name">Name</p:outputLabel>
+                            <p:outputLabel for="employee_name" value="name" />
                             <p:inputText id="employee_name" placeholder="employee name"
                                          value="#{employeeBean.employee.name}" required="true">
                                 <f:validateRequired/>
@@ -143,7 +143,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_gender">Gender</p:outputLabel>
+                            <p:outputLabel for="employee_gender" value="gender" />
                             <p:selectOneRadio id="employee_gender" value="#{employeeBean.employee.gender}"
                                               layout="responsive" columns="3">
                                 <f:selectItem itemLabel="Female" itemValue="Female"/>
@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_occupation" value="Employee occupation"/>
+                            <p:outputLabel for="employee_occupation" value="occupations" />
                             <p:selectManyMenu id="employee_occupation" value="#{employeeBean.employee.occupations}"
                                               converter="#{omnifaces.SelectItemsConverter}" showCheckbox="true"
                                               var="occupation_column" filter="true" filterMatchMode="contains"
@@ -175,8 +175,8 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_age">Age</p:outputLabel>
-                            <p:spinner id="employee_age" min="18" max="100" value="#{employeeBean.employee.age}">
+                            <p:outputLabel for="employee_age" value="age" />
+                            <p:spinner id="employee_age" placeholder="Age" min="18" max="100" value="#{employeeBean.employee.age}">
                                 <f:validateRequired/>
                             </p:spinner>
                         </div>
@@ -218,7 +218,7 @@
             </p:dialog>
 
             <p:confirmDialog widgetVar="deleteEmployeeDialog" showEffect="fade"
-                             width="300" message="Set Employee as inactive?"
+                             width="300" message="Set Employee(s) as inactive?"
                              header="Confirm" severity="warn">
                 <p:commandButton value="Yes" icon="pi pi-check"
                                  actionListener="#{employeeBean.softRemove}"

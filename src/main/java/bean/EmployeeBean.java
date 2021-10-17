@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class EmployeeBean implements Serializable {
 
+    private OccupationDao occupationDao;
     private EmployeeDao employeeDao;
     private Employee employee;
     private List<Employee> activeEmployeeList;
     private List<Employee> selectedEmployeeList;
-    private OccupationDao occupationDao;
     private List<Occupation> activeOccupationList;
 
     @PostConstruct
@@ -44,7 +44,7 @@ public class EmployeeBean implements Serializable {
             this.employeeDao.insert(this.employee);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Added"));
         }
-        PrimeFaces.current().executeScript("PF(' ').hide()");
+        PrimeFaces.current().executeScript("PF('EmployeeDialog').hide()");
         this.refreshData();
     }
 

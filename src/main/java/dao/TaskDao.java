@@ -83,7 +83,6 @@ public class TaskDao {
 	}
 
 	public Boolean isPresent(Task task) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.contains(task);
+		return this.find(task.getId()) != null;
 	}
 }
