@@ -52,8 +52,7 @@ public class Task {
     private String description;
 
     @NotNull
-    @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "task_employees",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "employees_id"))

@@ -38,11 +38,11 @@ public class TaskBean implements Serializable {
     }
 
     public void saveTask() {
-        if(this.taskDao.isPresent(task)) {
-            this.taskDao.update(task);
+        if(this.taskDao.isPresent(this.task)) {
+            this.taskDao.update(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Updated"));
         } else {
-            this.taskDao.insert(task);
+            this.taskDao.insert(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Added"));
         }
         PrimeFaces.current().executeScript("PF('TaskDialog').hide()");
@@ -61,7 +61,7 @@ public class TaskBean implements Serializable {
 
     public String getDeleteButtonMessage() {
         if(this.getHasTaskSelected())
-            return this.selectedTaskList.size() + " tasks selected";
+            return this.selectedTaskList.size() + " tasks selected ";
         else
             return "delete";
     }

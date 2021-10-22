@@ -42,8 +42,7 @@ public class Project {
     private Boolean activeStatus = true;
 
     @NotNull
-    @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "project_tasks",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "tasks_id"))

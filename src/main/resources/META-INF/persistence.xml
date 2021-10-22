@@ -31,5 +31,4 @@
 			<property name="hibernate.hbm2ddl.auto" value="validate"/>
 		</properties>
 	</persistence-unit>
-
 </persistence>

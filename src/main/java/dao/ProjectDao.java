@@ -5,11 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import models.Employee;
 import models.Project;
+import org.hibernate.Hibernate;
 import util.EntityManagerCreator;
 
 public class ProjectDao {
-
 	
 	public Project find(Long id) {
 		EntityManager manager = EntityManagerCreator.getEntityManager();
@@ -70,7 +71,6 @@ public class ProjectDao {
 	}
 
 	public Boolean isPresent(Project project) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.contains(project);
+		return this.find(project.getId()) != null;
 	}
 }

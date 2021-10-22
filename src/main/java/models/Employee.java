@@ -47,8 +47,7 @@ public class Employee {
     private Boolean activeStatus = true;
 
     @NotNull
-    @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = {CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "employee_occupations",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "occupations_id", referencedColumnName = "id"))

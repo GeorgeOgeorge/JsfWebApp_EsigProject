@@ -131,14 +131,14 @@
                     <div class="p-formgrid p-grid">
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_id">Id</p:outputLabel>
+                            <p:outputLabel for="task_id" value="Id" />
                             <p:inputText id="task_id" placeholder="task id" value="#{taskBean.task.id}">
                                 <f:validateRequired/>
                             </p:inputText>
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_name">Name</p:outputLabel>
+                            <p:outputLabel for="task_name" value="Name" />
                             <p:inputText id="task_name" placeholder="task name"
                                          value="#{taskBean.task.name}">
                                 <f:validateRequired/>
