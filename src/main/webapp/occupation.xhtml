@@ -106,10 +106,8 @@
                 <p:outputPanel id="occupation-content" class="ui-fluid">
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-col">
-                            <p:outputLabel for="occupation_id" value="id" />
-                            <p:inputText  id="occupation_id" placeholder="occupation id" value="#{occupationBean.occupation.id}" required="true" >
-                                <f:validateRequired/>
-                            </p:inputText>
+                            <p:outputLabel value="id" />
+                            <p:inputText readonly="true" placeholder="occupation id" value="#{occupationBean.occupation.id}" />
                         </div>
                         <div class="p-field p-col">
                             <p:outputLabel for="occupation_name" value="name" />

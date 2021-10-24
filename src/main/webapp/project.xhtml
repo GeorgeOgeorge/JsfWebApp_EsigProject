@@ -123,10 +123,7 @@
                     <div class="p-formgrid p-grid">
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="project_id" value="Id" />
-                            <p:inputText id="project_id" placeholder="project id" value="#{projectBean.project.id}">
-                                <f:validateRequired/>
-                            </p:inputText>
+                            <p:inputText type="hidden" disabled="true" readonly="true" value="#{projectBean.project.id}"/>
                         </div>
 
                         <div class="p-field p-col">

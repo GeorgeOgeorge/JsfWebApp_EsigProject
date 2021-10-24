@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,10 +22,9 @@ import java.util.List;
 @Entity
 public class Employee {
 
-    @Min(0)
-    @NotNull
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = SEQUENCE)
+    @Column(name = "id")
     private Long id;
 
     @Size(min = 3, max = 50)

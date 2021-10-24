@@ -14,6 +14,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -21,10 +23,9 @@ import java.util.List;
 @Entity
 public class Task {
 
-    @Min(0)
-    @NotNull
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = SEQUENCE)
+    @Column(name = "id")
     private Long id;
 
     @Size(min = 3, max = 50)

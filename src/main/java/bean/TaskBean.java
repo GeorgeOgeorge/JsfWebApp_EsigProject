@@ -38,12 +38,12 @@ public class TaskBean implements Serializable {
     }
 
     public void saveTask() {
-        if(this.taskDao.isPresent(this.task)) {
-            this.taskDao.update(this.task);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Updated"));
-        } else {
+        if(this.task.getId() == null) {
             this.taskDao.insert(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Added"));
+        } else {
+            this.taskDao.update(this.task);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Updated"));
         }
         PrimeFaces.current().executeScript("PF('TaskDialog').hide()");
         this.refreshData();

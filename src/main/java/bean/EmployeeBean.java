@@ -37,12 +37,12 @@ public class EmployeeBean implements Serializable {
     }
 
     public void saveEmployee() {
-        if (this.employeeDao.isPresent(this.employee)) {
-            this.employeeDao.update(this.employee);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Updated"));
-        } else {
+        if (this.employee.getId() == null) {
             this.employeeDao.insert(this.employee);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Added"));
+        } else {
+            this.employeeDao.update(this.employee);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Updated"));
         }
         PrimeFaces.current().executeScript("PF('EmployeeDialog').hide()");
         this.refreshData();

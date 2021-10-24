@@ -37,12 +37,12 @@ public class ProjectBean implements Serializable {
     }
 
     public void saveTask() {
-        if(this.projectDao.isPresent(this.project)){
-            this.projectDao.update(this.project);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Updated"));
-        } else {
+        if(this.project.getId() == null){
             this.projectDao.insert(this.project);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Added"));
+        } else {
+            this.projectDao.update(this.project);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Updated"));
         }
         PrimeFaces.current().executeScript("PF('ProjectDialog').hide()");
         this.refreshData();

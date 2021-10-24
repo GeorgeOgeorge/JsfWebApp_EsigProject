@@ -18,11 +18,11 @@ public class OccupationDaoTest {
 
     private OccupationDao occupationDao ;
     private List<Occupation> occupations = Arrays.asList(
-            new Occupation(1L, "devFront", true),
-            new Occupation(2L, "devBack", true),
-            new Occupation(3L, "devFullstack", true),
-            new Occupation(4L, "SoftEng", true),
-            new Occupation(5L, "Manager", true)
+            new Occupation("devFront"),
+            new Occupation("devBack"),
+            new Occupation("devFullstack"),
+            new Occupation("SoftEng"),
+            new Occupation("Manager")
     );
 
     @Before
@@ -40,6 +40,7 @@ public class OccupationDaoTest {
     @Test
     public void testB() {
         Occupation occupation = this.occupations.get(0);
+        occupation.setId(56L);
         assertTrue(occupation.equals(this.occupationDao.find(occupation.getId())));
     }
 

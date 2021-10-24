@@ -126,11 +126,7 @@
                     <div class="p-formgrid p-grid">
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_id" value="id" />
-                            <p:inputText id="employee_id" placeholder="employee id" value="#{employeeBean.employee.id}"
-                                         required="true">
-                                <f:validateRequired/>
-                            </p:inputText>
+                            <p:inputText type="hidden" readonly="true" placeholder="employee id" value="#{employeeBean.employee.id}"/>
                         </div>
 
                         <div class="p-field p-col">
