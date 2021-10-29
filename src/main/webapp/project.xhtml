@@ -13,7 +13,7 @@
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-    <h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css"/>
+    <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.min.css"/>
     <title>TaskManager Project</title>
 </h:head>
 
@@ -117,7 +117,7 @@
             <p:dialog header="Project details"
                       showEffect="fade" modal="true"
                       widgetVar="ProjectDialog"
-                      responsive="true" >
+                      responsive="true" width="30rem" height="auto" >
 
                 <p:outputPanel id="project-content" class="ui-fluid">
                     <div class="p-formgrid p-grid">
@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="project_name" value="Name" />
+                            <p:outputLabel for="project_name" value="Name" style="font-weight:bold"/>
                             <p:inputText id="project_name" placeholder="project name"
                                          value="#{projectBean.project.name}">
                                 <f:validateRequired/>
@@ -135,13 +135,15 @@
                             </p:inputText>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="project_deadLine" value="project deadline"/>
+                            <p:outputLabel for="project_deadLine" value="project deadline" style="font-weight:bold"/>
                             <p:datePicker id="project_deadLine" value="#{projectBean.project.deadLine}" readonlyInput="true"/>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="project_task" value="project task"/>
+                            <p:outputLabel for="project_task" value="project task" style="font-weight:bold"/>
                             <p:selectManyMenu id="project_task" value="#{projectBean.project.tasks}"
                                               converter="#{omnifaces.SelectItemsConverter}" showCheckbox="true"
                                               var="task_column" filter="true" filterMatchMode="contains"
@@ -175,7 +177,7 @@
 
                 <f:facet name="footer">
                     <p:commandButton value="Save" icon="pi pi-check"
-                                     actionListener="#{projectBean.saveTask}"
+                                     actionListener="#{projectBean.saveProject}"
                                      update="form"
                                      process="project-content @this"/>
                     <p:commandButton value="Cancel" icon="pi pi-times"
@@ -185,7 +187,7 @@
 
             </p:dialog>
 
-            <p:dialog header="Project Tasks"
+            <p:dialog header="Project Tasks" id="project-tasks"
                       showEffect="fade" modal="true"
                       widgetVar="ProjectTasksDialog"
                       responsive="true">

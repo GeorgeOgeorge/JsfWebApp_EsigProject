@@ -75,6 +75,7 @@ public class EmployeeBean implements Serializable {
         this.activeEmployeeList = this.employeeDao.list().stream()
                 .filter(e -> e.getActiveStatus())
                 .collect(Collectors.toList());
+        System.out.println(this.activeEmployeeList);
         this.activeOccupationList = this.occupationDao.list().stream()
                 .filter(o -> o.getActiveStatus()).
                 collect(Collectors.toList());

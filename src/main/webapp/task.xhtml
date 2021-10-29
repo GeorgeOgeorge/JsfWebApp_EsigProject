@@ -125,7 +125,7 @@
             <p:dialog header="Task details"
                       showEffect="fade" modal="true"
                       widgetVar="TaskDialog"
-                      responsive="true" >
+                      responsive="true" width="30rem" height="25rem" >
 
                 <p:outputPanel id="task-content" class="ui-fluid">
                     <div class="p-formgrid p-grid">
@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_name" value="Name" />
+                            <p:outputLabel for="task_name" value="Name" style="font-weight:bold" />
                             <p:inputText id="task_name" placeholder="task name"
                                          value="#{taskBean.task.name}">
                                 <f:validateRequired/>
@@ -143,14 +143,16 @@
                             </p:inputText>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_deadLine" value="task deadline"/>
+                            <p:outputLabel for="task_deadLine" value="task deadline" style="font-weight:bold"/>
                             <p:datePicker id="task_deadLine" value="#{taskBean.task.deadLine}"
                                           disabledDays="#{taskBean.invalidDays}" readonlyInput="true"/>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_priority" value="task priority" />
+                            <p:outputLabel for="task_priority" value="task priority" style="font-weight:bold"/>
                             <p:selectOneRadio id="task_priority" value="#{taskBean.task.priority}"
                                               layout="responsive" columns="3">
                                 <f:selectItem itemLabel="high" itemValue="high"/>
@@ -159,16 +161,18 @@
                             </p:selectOneRadio>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_description" value="task description" />
+                            <p:outputLabel for="task_description" value="task description" style="font-weight:bold"/>
                             <p:inputTextarea id="task_description" placeholder="task description" value="#{taskBean.task.description}">
                                 <f:validateRequired/>
                                 <f:validateLength minimum="5" maximum="256"/>
                             </p:inputTextarea>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="task_employee" value="task employee"/>
+                            <p:outputLabel for="task_employee" value="task employee" style="font-weight:bold"/>
                             <p:selectManyMenu id="task_employee" value="#{taskBean.task.employees}"
                                               converter="#{omnifaces.SelectItemsConverter}" showCheckbox="true"
                                               var="employee_column" filter="true" filterMatchMode="contains"

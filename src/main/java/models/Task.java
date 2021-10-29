@@ -47,13 +47,16 @@ public class Task {
     @Column(name = "active_status", nullable = false)
     private Boolean activeStatus = true;
 
+    @Column(name = "assigned", nullable = false)
+    private Boolean assigned = false;
+
     @Size(min = 5, max = 256)
     @NotNull
     @Column(name = "description", nullable = false, length = 256)
     private String description;
 
     @NotNull
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "task_employees",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "employees_id"))

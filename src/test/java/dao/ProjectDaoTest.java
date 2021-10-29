@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 @NoArgsConstructor
 @Data
 public class ProjectDaoTest {
-
+/*
     private ProjectDao projectDao;
     private final TaskDaoTest taskDaoTest = new TaskDaoTest();
     private final Project projectTest = new Project(1L, "sportShop Website", LocalDate.of(2022, 8, 16), true,
@@ -78,5 +78,5 @@ public class ProjectDaoTest {
     public void testE() {
         this.projectDao.remove(this.projectTest.getId());
     }
-
+*/
 }

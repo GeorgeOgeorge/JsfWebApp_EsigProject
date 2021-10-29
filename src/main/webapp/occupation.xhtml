@@ -102,15 +102,17 @@
             <p:dialog header="Occupation details"
                       showEffect="fade" modal="true"
                       widgetVar="OccupationDialog"
-                      responsive="true">
+                      responsive="true" width="20rem" height="10rem">
                 <p:outputPanel id="occupation-content" class="ui-fluid">
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-col">
-                            <p:outputLabel value="id" />
+                            <p:outputLabel value="id" style="font-weight:bold" />
                             <p:inputText readonly="true" placeholder="occupation id" value="#{occupationBean.occupation.id}" />
                         </div>
+
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="occupation_name" value="name" />
+                            <p:outputLabel for="occupation_name" value="name" style="font-weight:bold" />
                             <p:inputText id="occupation_name" placeholder="occupation name" value="#{occupationBean.occupation.name}" required="true">
                                 <f:validateRequired/>
                                 <f:validateLength minimum="3" maximum="30"/>

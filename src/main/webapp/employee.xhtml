@@ -13,7 +13,11 @@
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-    <h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css"/>
+    <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/themes/saga-blue.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/themes/arya-blue.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/themes/vela-blue.css"/>
     <title>TaskManager Employees</title>
 </h:head>
 
@@ -120,7 +124,7 @@
             <p:dialog header="Employee details"
                       showEffect="fade" modal="true"
                       widgetVar="EmployeeDialog"
-                      responsive="true">
+                      responsive="true" width="30rem" height="25rem">
 
                 <p:outputPanel id="employee-content" style="overflow: auto" class="ui-fluid">
                     <div class="p-formgrid p-grid">
@@ -130,7 +134,7 @@
                         </div>
 
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_name" value="name" />
+                            <p:outputLabel for="employee_name" value="name" style="font-weight:bold" />
                             <p:inputText id="employee_name" placeholder="employee name"
                                          value="#{employeeBean.employee.name}" required="true">
                                 <f:validateRequired/>
@@ -138,8 +142,9 @@
                             </p:inputText>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_gender" value="gender" />
+                            <p:outputLabel for="employee_gender" value="gender" style="font-weight:bold" />
                             <p:selectOneRadio id="employee_gender" value="#{employeeBean.employee.gender}"
                                               layout="responsive" columns="3">
                                 <f:selectItem itemLabel="Female" itemValue="Female"/>
@@ -148,8 +153,9 @@
                             </p:selectOneRadio>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_occupation" value="occupations" />
+                            <p:outputLabel for="employee_occupation" value="occupations" style="font-weight:bold" />
                             <p:selectManyMenu id="employee_occupation" value="#{employeeBean.employee.occupations}"
                                               converter="#{omnifaces.SelectItemsConverter}" showCheckbox="true"
                                               var="occupation_column" filter="true" filterMatchMode="contains"
@@ -170,8 +176,9 @@
                             </p:selectManyMenu>
                         </div>
 
+                        <br/>
                         <div class="p-field p-col">
-                            <p:outputLabel for="employee_age" value="age" />
+                            <p:outputLabel for="employee_age" value="age" style="font-weight:bold" />
                             <p:spinner id="employee_age" placeholder="Age" min="18" max="100" value="#{employeeBean.employee.age}">
                                 <f:validateRequired/>
                             </p:spinner>

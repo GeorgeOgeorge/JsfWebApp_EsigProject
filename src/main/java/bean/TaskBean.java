@@ -28,7 +28,7 @@ public class TaskBean implements Serializable {
     private List<Task> activeTaskList;
     private List<Task> selectedTaskList;
     private List<Employee> activeEmployeeList;
-    private List<Integer> invalidDays = Arrays.asList(0,6);
+    private List<Integer> invalidDays = Arrays.asList(0, 6);
 
     @PostConstruct
     public void init() {
@@ -38,7 +38,7 @@ public class TaskBean implements Serializable {
     }
 
     public void saveTask() {
-        if(this.task.getId() == null) {
+        if (this.task.getId() == null) {
             this.taskDao.insert(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Added"));
         } else {
@@ -50,8 +50,8 @@ public class TaskBean implements Serializable {
     }
 
     public void softRemove() {
-        if(this.getHasTaskSelected())
-            this.selectedTaskList.forEach( t -> this.setInactive(t));
+        if (this.getHasTaskSelected())
+            this.selectedTaskList.forEach(t -> this.setInactive(t));
         else
             this.setInactive(this.task);
         this.refreshData();
@@ -60,7 +60,7 @@ public class TaskBean implements Serializable {
     }
 
     public String getDeleteButtonMessage() {
-        if(this.getHasTaskSelected())
+        if (this.getHasTaskSelected())
             return this.selectedTaskList.size() + " tasks selected ";
         else
             return "delete";
@@ -74,10 +74,10 @@ public class TaskBean implements Serializable {
         this.task = new Task();
         this.selectedTaskList = Arrays.asList();
         this.activeEmployeeList = this.employeeDao.list().stream()
-                .filter( e -> e.getActiveStatus())
+                .filter(e -> e.getActiveStatus())
                 .collect(Collectors.toList());
         this.activeTaskList = this.taskDao.list().stream()
-                .filter( t -> t.getActiveStatus())
+                .filter(t -> t.getActiveStatus())
                 .collect(Collectors.toList());
     }
 

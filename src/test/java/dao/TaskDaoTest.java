@@ -18,7 +18,7 @@ public class TaskDaoTest {
 
     private TaskDao taskDao;
     private final EmployeeDaoTest employeeDaoTest = new EmployeeDaoTest();
-    private List<Task> tasks = Arrays.asList(
+/*    private List<Task> tasks = Arrays.asList(
             new Task(1L, "program o backEnd", LocalDate.of(2022, 5, 3),
                     "high", true, "program backEnd 3 levels",
                     Arrays.asList(
@@ -82,5 +82,5 @@ public class TaskDaoTest {
     @Test
     public void testE() {
         this.taskDao.remove(this.tasks.get(0).getId());
-    }
+    }*/
 }

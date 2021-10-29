@@ -36,8 +36,12 @@ public class ProjectBean implements Serializable {
         this.refreshData();
     }
 
-    public void saveTask() {
-        if(this.project.getId() == null){
+    public void saveProject() {
+        this.project.getTasks().forEach(task -> {
+            task.setAssigned(true);
+            this.taskDao.update(task);
+        });
+        if (this.project.getId() == null) {
             this.projectDao.insert(this.project);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Added"));
         } else {
@@ -49,8 +53,8 @@ public class ProjectBean implements Serializable {
     }
 
     public void softRemove() {
-        if(this.getHasProjectSelect())
-            this.selectedProjectList.forEach( p -> this.setInactive(p));
+        if (this.getHasProjectSelect())
+            this.selectedProjectList.forEach(p -> this.setInactive(p));
         else
             this.setInactive(this.project);
         this.refreshData();
@@ -59,7 +63,7 @@ public class ProjectBean implements Serializable {
     }
 
     public String getDeleteButtonMessage() {
-        if(this.getHasProjectSelect())
+        if (this.getHasProjectSelect())
             return this.selectedProjectList.size() + " projects selected ";
         else
             return "delete";
@@ -73,10 +77,10 @@ public class ProjectBean implements Serializable {
         this.project = new Project();
         this.selectedProjectList = Arrays.asList();
         this.activeProjectList = this.projectDao.list().stream()
-                .filter( p -> p.getActiveStatus())
+                .filter(p -> p.getActiveStatus())
                 .collect(Collectors.toList());
         this.activeTaskList = this.taskDao.list().stream()
-                .filter( t -> t.getActiveStatus())
+                .filter(t -> t.getActiveStatus() && !t.getAssigned())
                 .collect(Collectors.toList());
     }
 
