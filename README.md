@@ -38,15 +38,20 @@ O Tomcat é um servidor Java-Web, que implementa as tecnologias Java Servlet e J
 * [hibernate-validator 6.0.13.Final](https://mvnrepository.com/artifact/org.hibernate/hibernate-validator/6.0.13.Final)
 * [primeflex 3.1.0](https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions/3.1.0)
 
-## Estrutura do Banco de Dados
+## 🗃 Estrutura do Banco de Dados 🗄
 Foi solicitado a criação um distema de controle de tarefas, para isso desenvolvi a seguinte relação de tabelas a partir do framework JPA. Na atual implementação do projeto, foram desenvolvidas as tabelas: *Projeto, Tarefa, Funcionario e Ocupação*
 
 ![Diagrama do projeto](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerDBdiagram.png)
 
-## Telas e recursos
+## ▶ Telas e recursos 👩‍💻
 O Sistema possui quatro telas para manipulação de dados, todas disponíveis para acesso por meio de uma barra de navegação
 
-### Tela de cadastro e tratamento de funcionários
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerMenuTab.gif)
+
+### Busca por campo especifico 
+Todas as telas possuem campos para que os dados das tabelas sejam exibidos e filtrados 
+
+![specific searchs](https://github.com/GeorgeOgeorge/images/blob/main/buscasEspecificas.gif)
 
 #### Cadastro
 Nesta tela é possível cadastrar um empregado para que seja o responsável por uma tarefa. O usuário deve fornecer o nome e o telefone de um funcionário para cadastrá-lo no sistema. O usuário não deve se preocupar em inserir um número de registro ou identificador, pois o próprio sistema será responsável por garantir que dois funcionários não tenham o mesmo identificador.
