@@ -4,19 +4,19 @@ Este aplicativo de gerenciamento de projetos foi implementado como um requisito 
 ## 📦 Pacotes, bibliotecas e dependências usadas 📚
 
 ### [Java 17](https://www.java.com/en-US/download/help/whatis_java.html)
-Linguagem de programação orientada a objetos utilizada no projeto
+Linguagem de programação orientada a objetos utilizada no projeto.
 
 ### [Java Server Faces](https://www.oracle.com/java/technologies/javaserverfaces.html)
 Especificação Java para a construção de interfaces de usuário baseadas em componentes para aplicações web. 
 
 ### [Hibernate](https://hibernate.org/)
-Framework para o mapeamento objeto-relacional
+Framework para o mapeamento objeto-relacional.
 
 ### [PrimeFaces](https://www.primefaces.org/)
-PrimeFaces é uma biblioteca de componentes de IU de código aberto para aplicativos baseados em JavaServer Faces
+PrimeFaces é uma biblioteca de componentes de IU de código aberto para aplicativos baseados em JavaServer Faces.
 
 ### [Maven](https://maven.apache.org/index.html)
-Gerente de projeto que ajuda o desenvolvedor com o controle e gerenciamento de: Dependências, Builds, Documentação
+Gerente de projeto que ajuda o desenvolvedor com o controle e gerenciamento de: dependências, builds, documentação.
 
 ### [PostgreSQL](https://www.postgresql.org/)
 PostgreSQL é um sistema gerenciador de banco de dados relacional de objetos.
@@ -39,31 +39,31 @@ O Tomcat é um servidor Java-Web, que implementa as tecnologias Java Servlet e J
 * [primeflex 3.1.0](https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions/3.1.0)
 
 ## 🗃 Estrutura do Banco de Dados 🗄
-Foi solicitado a criação um sistema de controle de tarefas, para isso desenvolvi a seguinte relação de tabelas a partir do framework JPA. Na atual implementação do projeto, foram desenvolvidas as tabelas: *Projeto, Tarefa, Funcionário e Ocupação*
+Foi solicitado a criação um sistema de controle de tarefas, para isso desenvolvi a seguinte relação de tabelas a partir do framework JPA. Na atual implementação do projeto, foram desenvolvidas as tabelas: *Projeto, Tarefa, Funcionário e Ocupação*.
 
 ![Diagrama do projeto](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerDBdiagram.png)
 
 ## ▶ Telas e recursos 👩‍💻
-O Sistema possui quatro telas para manipulação de dados, todas disponíveis para acesso por meio de uma barra de navegação
+O Sistema possui quatro telas para manipulação de dados, todas disponíveis para acesso por meio de uma barra de navegação.
 
 ![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerMenuTab.gif)
 
-### Busca por campo especifico
-Todas as telas possuem campos para que os dados das tabelas sejam exibidos e filtrados 
+### 🔍 Busca por campo especifico
+Todas as telas possuem campos para que os dados das tabelas sejam exibidos e filtrados.
 
-![specific searchs](https://github.com/GeorgeOgeorge/images/blob/main/buscasEspecificas.gif)
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerSearch.gif)
 
-### Remover um registro 
-Existem três maneiras de marcar um registro como inativo: remover um único registro, remover um grupo de registros e remover todos os registros. Assim que um registro é marcado como inativo, ele deixa de ser listado nas telas, porem continua existindo no banco de dados(*soft delete*) 
-
-![remove instance](https://github.com/GeorgeOgeorge/images/blob/main/delete.gif)
-
-#### Cadastro
+### ✔ Cadastro
 O usuário irá informar os campos necessários e caso erre um valor ou esqueça algum dado obrigatório, os sistemas de validação do projeto irão informar que algo não esta certo.
 
-![add instance](https://github.com/GeorgeOgeorge/images/blob/main/edit.gif)
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerAdd.gif)
 
+### ❌ Remover um registro 
+Existem três maneiras de marcar um registro como inativo: remover um único registro, remover um grupo de registros e remover todos os registros. Assim que um registro é marcado como inativo, ele deixa de ser listado nas telas, porem continua existindo no banco de dados(*soft delete*).
 
-#### Alterar e excluir
-Se um dos funcionários mostrados na tabela for selecionado, o usuário pode alterar os dados nas caixas de texto ou excluir o funcionário assim que o usuário pressionar um dos botões.
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerRemove.gif)
 
+### 📝 Alterar um registro
+Se um dos registros exibidos na tabela for selecionado, o usuário poderá alterar seus dados.
+
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerEdit.gif)
