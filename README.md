@@ -58,12 +58,12 @@ O usuário irá informar os campos necessários e caso erre um valor ou esqueça
 
 ![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerAdd.gif)
 
-### ❌ Remover um registro 
-Existem três maneiras de marcar um registro como inativo: remover um único registro, remover um grupo de registros e remover todos os registros. Assim que um registro é marcado como inativo, ele deixa de ser listado nas telas, porem continua existindo no banco de dados(*soft delete*).
-
-![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerRemove.gif)
-
 ### 📝 Alterar um registro
 Se um dos registros exibidos na tabela for selecionado, o usuário poderá alterar seus dados.
 
 ![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerEdit.gif)
+
+### ❌ Remover um registro 
+Existem três maneiras de marcar um registro como inativo: remover um único registro, remover um grupo de registros e remover todos os registros. Assim que um registro é marcado como inativo, ele deixa de ser listado nas telas, porem continua existindo no banco de dados(*soft delete*).
+
+![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectManagerRemove.gif)
