@@ -25,7 +25,7 @@ PostgreSQL é um sistema gerenciador de banco de dados relacional de objetos.
 O Tomcat é um servidor Java-Web, que implementa as tecnologias Java Servlet e JavaServer Pages, permitindo assim que a aplicação fique disponível para conexão no Browser.
 
 ### *Dependências utilizadas* 
-[Arquivo contendo as dependencias](https://github.com/GeorgeOgeorge/JsfWebApp_EsigProject/blob/master/pom.xml)
+[Arquivo contendo as dependências](https://github.com/GeorgeOgeorge/JsfWebApp_EsigProject/blob/master/pom.xml)
 * [hibernate-core 5.4.12.Final](https://mvnrepository.com/artifact/org.hibernate/hibernate-core/5.4.12.Final)
 * [postgresql 42.2.19](https://mvnrepository.com/artifact/org.postgresql/postgresql/42.2.19)
 * [junit 4.13.2](https://mvnrepository.com/artifact/junit/junit/4.13.2)
@@ -39,7 +39,7 @@ O Tomcat é um servidor Java-Web, que implementa as tecnologias Java Servlet e J
 * [primeflex 3.1.0](https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions/3.1.0)
 
 ## 🗃 Estrutura do Banco de Dados 🗄
-Foi solicitado a criação um distema de controle de tarefas, para isso desenvolvi a seguinte relação de tabelas a partir do framework JPA. Na atual implementação do projeto, foram desenvolvidas as tabelas: *Projeto, Tarefa, Funcionario e Ocupação*
+Foi solicitado a criação um sistema de controle de tarefas, para isso desenvolvi a seguinte relação de tabelas a partir do framework JPA. Na atual implementação do projeto, foram desenvolvidas as tabelas: *Projeto, Tarefa, Funcionário e Ocupação*
 
 ![Diagrama do projeto](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerDBdiagram.png)
 
@@ -48,25 +48,22 @@ O Sistema possui quatro telas para manipulação de dados, todas disponíveis pa
 
 ![Menu tab Gif](https://github.com/GeorgeOgeorge/images/blob/main/projectMenagerMenuTab.gif)
 
-### Busca por campo especifico 
+### Busca por campo especifico
 Todas as telas possuem campos para que os dados das tabelas sejam exibidos e filtrados 
 
 ![specific searchs](https://github.com/GeorgeOgeorge/images/blob/main/buscasEspecificas.gif)
 
-#### Cadastro
-Nesta tela é possível cadastrar um empregado para que seja o responsável por uma tarefa. O usuário deve fornecer o nome e o telefone de um funcionário para cadastrá-lo no sistema. O usuário não deve se preocupar em inserir um número de registro ou identificador, pois o próprio sistema será responsável por garantir que dois funcionários não tenham o mesmo identificador.
+### Remover um registro 
+Existem três maneiras de marcar um registro como inativo: remover um único registro, remover um grupo de registros e remover todos os registros. Assim que um registro é marcado como inativo, ele deixa de ser listado nas telas, porem continua existindo no banco de dados(*soft delete*) 
 
-#### Relatório de funcionários registrados
-Será possível verificar todos os funcionários cadastrados no sistema.
+![remove instance](https://github.com/GeorgeOgeorge/images/blob/main/delete.gif)
+
+#### Cadastro
+O usuário irá informar os campos necessários e caso erre um valor ou esqueça algum dado obrigatório, os sistemas de validação do projeto irão informar que algo não esta certo.
+
+![add instance](https://github.com/GeorgeOgeorge/images/blob/main/edit.gif)
+
 
 #### Alterar e excluir
 Se um dos funcionários mostrados na tabela for selecionado, o usuário pode alterar os dados nas caixas de texto ou excluir o funcionário assim que o usuário pressionar um dos botões.
 
-### Tela para registrar uma tarefa
-Nesta tela o usuário pode cadastrar uma tarefa, assim como no funcionário, fica a cargo do sistema o controle do número de identificação, assim como o status de uma tarefa, que por sua vez fica sempre * Em andamento * quando criada .
-
-### Tela para lidar com uma tarefa
-Assim como na tabela de funcionários, o usuário pode alterar os dados e excluir uma tarefa uma vez selecionada, no entanto, o usuário também pode marcar uma tarefa como * concluída *.
-
-### Tela de relatórios de tarefas
-Nesta tela, o usuário pode utilizar os campos disponíveis para filtrar tarefas específicas.
