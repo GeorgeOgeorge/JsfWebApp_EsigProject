@@ -1,5 +1,6 @@
-package models;
+package functional.models;
 
+import com.tngtech.archunit.core.domain.JavaClasses;
 import junit.framework.TestCase;
 
 public class OccupationTest extends TestCase {

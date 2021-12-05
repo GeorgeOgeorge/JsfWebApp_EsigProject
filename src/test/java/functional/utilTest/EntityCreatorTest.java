@@ -1,4 +1,4 @@
-package utilTest;
+package functional.utilTest;
 import javax.persistence.EntityManager;
 
 import org.junit.Test;

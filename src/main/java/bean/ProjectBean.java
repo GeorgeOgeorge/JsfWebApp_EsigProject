@@ -85,6 +85,10 @@ public class ProjectBean implements Serializable {
     }
 
     private void setInactive(Project project) {
+        project.getTasks().forEach(task -> {
+            task.setActiveStatus(false);
+            this.taskDao.update(task);
+        });
         project.setActiveStatus(false);
         this.projectDao.update(project);
     }

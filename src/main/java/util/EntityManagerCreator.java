@@ -5,9 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class EntityManagerCreator {
-	private static EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("TaskManagerPU");
+    private static final EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("TaskManagerPU");
 
-	public static EntityManager getEntityManager() {
-		return managerFactory.createEntityManager();
-	}
+    public static EntityManager getEntityManager() {
+        return managerFactory.createEntityManager();
+    }
 }

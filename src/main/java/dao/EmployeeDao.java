@@ -34,6 +34,7 @@ public class EmployeeDao {
     public void update(Employee employee) {
         EntityManager manager = EntityManagerCreator.getEntityManager();
         EntityTransaction transaction = manager.getTransaction();
+
         transaction.begin();
         manager.merge(employee);
         manager.flush();

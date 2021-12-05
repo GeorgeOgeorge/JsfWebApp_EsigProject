@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class OccupationBean implements Serializable {
 
-
     private OccupationDao occupationDao;
     private Occupation occupation;
     private List<Occupation> activeOccupationList;

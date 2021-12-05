@@ -1,10 +1,11 @@
-package dao;
+package functional.dao;
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
+import dao.OccupationDao;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Before;

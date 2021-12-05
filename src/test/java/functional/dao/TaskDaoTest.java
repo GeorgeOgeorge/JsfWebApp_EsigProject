@@ -1,14 +1,8 @@
-package dao;
+package functional.dao;
 
+import dao.TaskDao;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import models.Task;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 

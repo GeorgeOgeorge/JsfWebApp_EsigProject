@@ -85,6 +85,4 @@ public class EmployeeBean implements Serializable {
         employee.setActiveStatus(false);
         this.employeeDao.update(employee);
     }
-
-
 }
