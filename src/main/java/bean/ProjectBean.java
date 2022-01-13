@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,7 +74,7 @@ public class ProjectBean implements Serializable {
 
     private void refreshData() {
         this.project = new Project();
-        this.selectedProjectList = Arrays.asList();
+        this.selectedProjectList = List.of();
         this.activeProjectList = this.projectDao.list().stream()
                 .filter(p -> p.getActiveStatus())
                 .collect(Collectors.toList());

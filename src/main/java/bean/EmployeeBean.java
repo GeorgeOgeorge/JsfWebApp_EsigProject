@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,7 +70,7 @@ public class EmployeeBean implements Serializable {
 
     private void refreshData() {
         this.employee = new Employee();
-        this.selectedEmployeeList = Arrays.asList();
+        this.selectedEmployeeList = List.of();
         this.activeEmployeeList = this.employeeDao.list().stream()
                 .filter(e -> e.getActiveStatus())
                 .collect(Collectors.toList());

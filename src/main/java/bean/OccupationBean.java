@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,7 +65,7 @@ public class OccupationBean implements Serializable {
 
     private void refreshData() {
         this.occupation = new Occupation();
-        this.selectedOccupationList = Arrays.asList();
+        this.selectedOccupationList = List.of();
         this.activeOccupationList = this.occupationDao.list().stream()
                 .filter(o -> o.getActiveStatus()).
                 collect(Collectors.toList());

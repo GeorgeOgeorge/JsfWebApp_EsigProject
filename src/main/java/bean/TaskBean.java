@@ -72,7 +72,7 @@ public class TaskBean implements Serializable {
 
     private void refreshData() {
         this.task = new Task();
-        this.selectedTaskList = Arrays.asList();
+        this.selectedTaskList = List.of();
         this.activeEmployeeList = this.employeeDao.list().stream()
                 .filter(e -> e.getActiveStatus())
                 .collect(Collectors.toList());

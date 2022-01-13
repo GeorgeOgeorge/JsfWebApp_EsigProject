@@ -1,76 +1,73 @@
 package dao;
 
-import java.util.List;
+import models.Project;
+import util.EntityManagerCreator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import models.Employee;
-import models.Project;
-import org.hibernate.Hibernate;
-import util.EntityManagerCreator;
+import java.util.List;
 
 public class ProjectDao {
-	
-	public Project find(Long id) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.find(Project.class, id);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Project> list() {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.createQuery("select p from Project p order by id")
-				.getResultList();
-	}
 
-	@SuppressWarnings("unchecked")
-	public List<Project> listStatus(Boolean status) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		return manager.createQuery("select p from Project p where p.activeStatus= :status order by id")
-				.setParameter("status", status)
-				.getResultList();
-	}
-	
-	public void insert(Project project) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		EntityTransaction transaction = manager.getTransaction();
+    public Project find(Long id) {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        return manager.find(Project.class, id);
+    }
 
-		transaction.begin();
-		manager.persist(project);
-		transaction.commit();
-		manager.close();
-	}
+    @SuppressWarnings("unchecked")
+    public List<Project> list() {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        return manager.createQuery("select p from Project p order by id")
+                .getResultList();
+    }
 
-	public void update(Project project) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		EntityTransaction transaction = manager.getTransaction();
+    @SuppressWarnings("unchecked")
+    public List<Project> listStatus(Boolean status) {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        return manager.createQuery("select p from Project p where p.activeStatus= :status order by id")
+                .setParameter("status", status)
+                .getResultList();
+    }
 
-		transaction.begin();
-		manager.merge(project);
-		transaction.commit();
-		manager.close();
-	}
+    public void insert(Project project) {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        EntityTransaction transaction = manager.getTransaction();
 
-	public void remove(Long id) {
-		EntityManager manager = EntityManagerCreator.getEntityManager();
-		EntityTransaction transaction = manager.getTransaction();
+        transaction.begin();
+        manager.persist(project);
+        transaction.commit();
+        manager.close();
+    }
 
-		transaction.begin();
-		manager.createNativeQuery("delete from project_tasks where project_id = ?")
-				.setParameter(1, id)
-				.executeUpdate();
-		transaction.commit();
+    public void update(Project project) {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        EntityTransaction transaction = manager.getTransaction();
 
-		transaction.begin();
-		manager.createQuery("delete from Project where id= :id")
-				.setParameter("id", id)
-				.executeUpdate();
-		transaction.commit();
-		manager.close();
-	}
+        transaction.begin();
+        manager.merge(project);
+        transaction.commit();
+        manager.close();
+    }
 
-	public Boolean isPresent(Project project) {
-		return this.find(project.getId()) != null;
-	}
+    public void remove(Long id) {
+        EntityManager manager = EntityManagerCreator.getEntityManager();
+        EntityTransaction transaction = manager.getTransaction();
+
+        transaction.begin();
+        manager.createNativeQuery("delete from project_tasks where project_id = ?")
+                .setParameter(1, id)
+                .executeUpdate();
+        transaction.commit();
+
+        transaction.begin();
+        manager.createQuery("delete from Project where id= :id")
+                .setParameter("id", id)
+                .executeUpdate();
+        transaction.commit();
+        manager.close();
+    }
+
+    public Boolean isPresent(Project project) {
+        return this.find(project.getId()) != null;
+    }
 }
