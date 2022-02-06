@@ -1,7 +1,6 @@
 package bean;
 
-import dao.EmployeeDao;
-import dao.OccupationDao;
+import dao.GenericDao;
 import lombok.Data;
 import models.Employee;
 import models.Occupation;
@@ -12,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class EmployeeBean implements Serializable {
 
-    private OccupationDao occupationDao;
-    private EmployeeDao employeeDao;
+    private GenericDao<Occupation, Long> occupationDao;
+    private GenericDao<Employee, Long> employeeDao;
     private Employee employee;
     private List<Employee> activeEmployeeList;
     private List<Employee> selectedEmployeeList;
@@ -30,26 +30,28 @@ public class EmployeeBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.employeeDao = new EmployeeDao();
-        this.occupationDao = new OccupationDao();
+        this.employeeDao = new GenericDao<>(Employee.class, Long.class);
+        this.occupationDao = new GenericDao<>(Occupation.class, Long.class);
         this.refreshData();
     }
 
+    @Transactional
     public void saveEmployee() {
         if (this.employee.getId() == null) {
-            this.employeeDao.insert(this.employee);
+            this.employeeDao.save(this.employee);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Added"));
         } else {
-            this.employeeDao.update(this.employee);
+            this.employeeDao.save(this.employee);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Employee Updated"));
         }
         PrimeFaces.current().executeScript("PF('EmployeeDialog').hide()");
         this.refreshData();
     }
 
+    @Transactional
     public void softRemove() {
         if (this.getHasEmployeeSelected())
-            this.selectedEmployeeList.forEach(e -> this.setInactive(e));
+            this.selectedEmployeeList.forEach(this::setInactive);
         else
             this.setInactive(this.employee);
         this.refreshData();
@@ -82,6 +84,6 @@ public class EmployeeBean implements Serializable {
 
     private void setInactive(Employee employee) {
         employee.setActiveStatus(false);
-        this.employeeDao.update(employee);
+        this.employeeDao.save(employee);
     }
 }

@@ -1,7 +1,6 @@
 package bean;
 
-import dao.ProjectDao;
-import dao.TaskDao;
+import dao.GenericDao;
 import lombok.Data;
 import models.Project;
 import models.Task;
@@ -21,8 +20,8 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class ProjectBean implements Serializable {
 
-    private TaskDao taskDao;
-    private ProjectDao projectDao;
+    private GenericDao<Task, Long> taskDao;
+    private GenericDao<Project, Long> projectDao;
     private Project project;
     private List<Project> activeProjectList;
     private List<Project> selectedProjectList;
@@ -30,21 +29,21 @@ public class ProjectBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.projectDao = new ProjectDao();
-        this.taskDao = new TaskDao();
+        this.projectDao = new GenericDao<>(Project.class, Long.class);
+        this.taskDao = new GenericDao<>(Task.class, Long.class);
         this.refreshData();
     }
 
     public void saveProject() {
         this.project.getTasks().forEach(task -> {
             task.setAssigned(true);
-            this.taskDao.update(task);
+            this.taskDao.save(task);
         });
         if (this.project.getId() == null) {
-            this.projectDao.insert(this.project);
+            this.projectDao.save(this.project);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Added"));
         } else {
-            this.projectDao.update(this.project);
+            this.projectDao.save(this.project);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Project Updated"));
         }
         PrimeFaces.current().executeScript("PF('ProjectDialog').hide()");
@@ -53,7 +52,7 @@ public class ProjectBean implements Serializable {
 
     public void softRemove() {
         if (this.getHasProjectSelect())
-            this.selectedProjectList.forEach(p -> this.setInactive(p));
+            this.selectedProjectList.forEach(this::setInactive);
         else
             this.setInactive(this.project);
         this.refreshData();
@@ -76,7 +75,7 @@ public class ProjectBean implements Serializable {
         this.project = new Project();
         this.selectedProjectList = List.of();
         this.activeProjectList = this.projectDao.list().stream()
-                .filter(p -> p.getActiveStatus())
+                .filter(Project::getActiveStatus)
                 .collect(Collectors.toList());
         this.activeTaskList = this.taskDao.list().stream()
                 .filter(t -> t.getActiveStatus() && !t.getAssigned())
@@ -86,10 +85,10 @@ public class ProjectBean implements Serializable {
     private void setInactive(Project project) {
         project.getTasks().forEach(task -> {
             task.setActiveStatus(false);
-            this.taskDao.update(task);
+            this.taskDao.save(task);
         });
         project.setActiveStatus(false);
-        this.projectDao.update(project);
+        this.projectDao.save(project);
     }
 
 }

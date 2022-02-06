@@ -1,7 +1,6 @@
 package bean;
 
-import dao.EmployeeDao;
-import dao.TaskDao;
+import dao.GenericDao;
 import lombok.Data;
 import models.Employee;
 import models.Task;
@@ -22,8 +21,8 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class TaskBean implements Serializable {
 
-    private EmployeeDao employeeDao;
-    private TaskDao taskDao;
+    private GenericDao<Employee, Long> employeeDao;
+    private GenericDao<Task, Long> taskDao;
     private Task task;
     private List<Task> activeTaskList;
     private List<Task> selectedTaskList;
@@ -32,17 +31,17 @@ public class TaskBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.employeeDao = new EmployeeDao();
-        this.taskDao = new TaskDao();
+        this.employeeDao = new GenericDao<>(Employee.class, Long.class);
+        this.taskDao = new GenericDao<>(Task.class, Long.class);
         this.refreshData();
     }
 
     public void saveTask() {
         if (this.task.getId() == null) {
-            this.taskDao.insert(this.task);
+            this.taskDao.save(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Added"));
         } else {
-            this.taskDao.update(this.task);
+            this.taskDao.save(this.task);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task Updated"));
         }
         PrimeFaces.current().executeScript("PF('TaskDialog').hide()");
@@ -51,7 +50,7 @@ public class TaskBean implements Serializable {
 
     public void softRemove() {
         if (this.getHasTaskSelected())
-            this.selectedTaskList.forEach(t -> this.setInactive(t));
+            this.selectedTaskList.forEach(this::setInactive);
         else
             this.setInactive(this.task);
         this.refreshData();
@@ -83,7 +82,7 @@ public class TaskBean implements Serializable {
 
     private void setInactive(Task task) {
         task.setActiveStatus(false);
-        this.taskDao.update(task);
+        this.taskDao.save(task);
     }
 
 }

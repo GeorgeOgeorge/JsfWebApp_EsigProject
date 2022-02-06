@@ -1,6 +1,6 @@
 package bean;
 
-import dao.OccupationDao;
+import dao.GenericDao;
 import lombok.Data;
 import models.Occupation;
 import org.primefaces.PrimeFaces;
@@ -19,23 +19,23 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class OccupationBean implements Serializable {
 
-    private OccupationDao occupationDao;
+    private GenericDao<Occupation, Long> occupationDao;
     private Occupation occupation;
     private List<Occupation> activeOccupationList;
     private List<Occupation> selectedOccupationList;
 
     @PostConstruct
     public void init() {
-        this.occupationDao = new OccupationDao();
+        this.occupationDao = new GenericDao<>(Occupation.class, Long.class);
         this.refreshData();
     }
 
     public void saveOccupation() {
         if (this.occupation.getId() == null) {
-            this.occupationDao.insert(this.occupation);
+            this.occupationDao.save(this.occupation);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation Added"));
         } else {
-            this.occupationDao.update(this.occupation);
+            this.occupationDao.save(this.occupation);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Occupation updated"));
         }
         PrimeFaces.current().executeScript("PF('OccupationDialog').hide()");
@@ -44,7 +44,7 @@ public class OccupationBean implements Serializable {
 
     public void softRemove() {
         if (this.getHasOccupationsSelected())
-            this.selectedOccupationList.forEach(o -> this.setInactive(o));
+            this.selectedOccupationList.forEach(this::setInactive);
         else
             this.setInactive(this.occupation);
         this.refreshData();
@@ -73,7 +73,7 @@ public class OccupationBean implements Serializable {
 
     private void setInactive(Occupation occupation) {
         occupation.setActiveStatus(false);
-        this.occupationDao.update(occupation);
+        this.occupationDao.save(occupation);
     }
 
 }

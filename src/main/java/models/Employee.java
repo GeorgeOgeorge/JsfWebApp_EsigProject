@@ -3,6 +3,8 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -47,6 +49,7 @@ public class Employee {
 
     @NotNull
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "employee_occupations",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "occupations_id", referencedColumnName = "id"))
